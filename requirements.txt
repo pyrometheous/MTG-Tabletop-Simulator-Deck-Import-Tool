@@ -1,0 +1,4 @@
+scrython~=1.8.1
+wxpython~=4.1.1
+Pillow
+requests
