@@ -165,7 +165,6 @@ def resize_img(img):
 
 
 def add_card_to_deck(card, offset, deck_img, deck_name):
-    #img = resize_img(card)
     img = Image.open(card)
     deck_img.paste(img, offset)
     deck_img.save(deck_name)
@@ -178,7 +177,6 @@ def create_object(card_name):
     amount = no_of_cards[card_name]
     image_url = card_image[card_name]
     back_url = card_image_back[card_name]
-    #print(card, text, amount, image_url)
     cid = int(card_id[card] * 100)
     count = 1
     while count <= int(amount):
@@ -212,11 +210,6 @@ class MainWindow(wx.Frame):
         #           Create Status Bar
         self.statusbar = self.CreateStatusBar(1)
         self.statusbar.SetStatusText('')
-        #           Create Drop Down Menu
-        # services = list()
-        # for x in service_id.keys():
-        #    services.append(x)
-        # self.choice = wx.Choice(panel, pos=(5, 5), size=(window_width - 125, 50), choices=services)
         #           Create Button(S)
         import_btn = wx.Button(panel, label='Browse', pos=(window_width - 100, 7))
         parse_file = wx.Button(panel, label='Import Deck', pos=(5, 35))
@@ -275,8 +268,6 @@ class MainWindow(wx.Frame):
                     text = card.oracle_text()
                     card_text[i] = text
                 except KeyError as e:
-                    #warning('The card "' + i +'" does not have "oracle_text"\n'
-                    #                          'therefore this card will not have text')
                     card_text[i] = ''
                 try:
                     back_of_card = card.card_faces()
@@ -312,9 +303,7 @@ class MainWindow(wx.Frame):
                 object_deck_ids += ids
             object_deck_ids += '\n'
             file.write(object_deck_ids)
-            #print(object_deck_ids)
             for deck in custom_deck:
-                #print(deck)
                 file.write(deck)
             file.close()
             shutil.copy(deck_file_name + 'json', object_save_dir)
